@@ -1,10 +1,16 @@
 import { Grid } from '@material-ui/core';
 import React from 'react';
 import youtube from './api/youtube';
-import { SearchBar, VideoDetails, VideoList } from './components/index';
+import { SearchBar, VideoDetail, VideoList } from './components/index';
 import { API_KEY } from './key.json';
 
 class App extends React.Component {
+
+  state = {
+    videos: [],
+    selectedVideo: null
+  };
+
   handleSubmit = async (searchTerm) => {
     const response = await youtube.get('search', {
       params: {
@@ -14,19 +20,20 @@ class App extends React.Component {
         q: searchTerm
       }
     });
-    console.log('res=> ', response);
+    this.setState({ videos: response.data.items, selectedVideo: response.data.items[0] });
   }
 
   render() {
+    const { selectedVideo } = this.state;
     return (
-      <Grid container spacing={10}>
+      <Grid style={{ justifyContent: 'centre' }} container spacing={10}>
         <Grid item xs={12}>
           <Grid container spacing={10}>
             <Grid item xs={12}>
               <SearchBar onFormSubmit={this.handleSubmit} />
             </Grid>
             <Grid item xs={8}>
-              <VideoDetails />
+              <VideoDetail video={selectedVideo} />
             </Grid>
             <Grid item xs={4}>
               <VideoList />
