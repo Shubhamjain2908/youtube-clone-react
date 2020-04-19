@@ -11,6 +11,10 @@ class App extends React.Component {
     selectedVideo: null
   };
 
+  componentDidMount() {
+    this.handleSubmit('async await tutorial');
+  }
+
   onVideoSelect = (video) => {
     this.setState({ selectedVideo: video })
   }
