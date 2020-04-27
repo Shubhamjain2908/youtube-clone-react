@@ -2,7 +2,6 @@ import { Grid } from '@material-ui/core';
 import React, { useState } from 'react';
 import youtube from './api/youtube';
 import { SearchBar, VideoDetail, VideoList } from './components/index';
-import { API_KEY } from './key.json';
 
 const App = () => {
   const [videos, setVideos] = useState([]);
@@ -13,7 +12,7 @@ const App = () => {
       params: {
         part: 'snippet',
         maxResults: 5,
-        key: API_KEY,
+        key: 'AIzaSyADIq-hrjrdxlFy4J_36kMFcG9WKZqB1q4',
         q: searchTerm
       }
     });

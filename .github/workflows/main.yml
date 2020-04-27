@@ -18,3 +18,4 @@ jobs:
           node-version: 12
       - run: npm ci # does a clean install for CI server
       - run: npm run build
+      - run: npm run deploy
